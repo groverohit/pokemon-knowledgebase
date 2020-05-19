@@ -9,14 +9,17 @@
   var modalContainer = $('#modal-container');
 
   //function to show the modal
-  function showModal(title, text, url){
+  function showModal(pokemon){
     var modal = $('.modal');
     var closeButton = $('.modal-close');
 
     //show pokemon name, height and image in modal
-    $('.modal-title').get(0).innerHTML = title;
-    $('.modal-text').get(0).innerHTML = "Height = " + text;
-    $('.modal-image').get(0).innerHTML = '<img src="' + url + '"/>';
+    $('.modal-title').get(0).innerHTML = pokemon.name;
+    $('.modal-text').get(0).innerHTML = "Height = " + pokemon.height;
+    $('.modal-image').get(0).innerHTML = '<img src="' + pokemon.imageUrl + '">';
+    $('.modal-types').get(0).innerHTML = 'Types are ' + pokemon.types;
+    $('.modal-abilities').get(0).innerHTML = 'Abilities are ' + pokemon.abilities;
+    $('.modal-back-image').get(0).innerHTML = '<img src="' + pokemon.backImageUrl + '"/>';
     $('#modal-container').addClass('is-visible');
 
     //event listener to hide modal on button click
@@ -32,7 +35,7 @@
   //function to log selected pokemon details from the url
   function showDetails(pokemon){
     loadDetails(pokemon).then(function() {
-    showModal(pokemon.name, pokemon.height, pokemon.imageUrl);
+    showModal(pokemon);
     });
   }
 
@@ -80,6 +83,14 @@
     return $.ajax(pokemon.detailsUrl, {dataType: 'json'}).then(function(responseJSON) {
       pokemon.imageUrl = responseJSON.sprites.front_default;
       pokemon.height = responseJSON.height;
+      pokemon.backImageUrl = responseJSON.sprites.back_default;
+      pokemon.abilities = [];
+      for (var i = 0; i < responseJSON.types.length; i++)
+        pokemon.abilities.push(responseJSON.abilities[i].ability.name);
+
+      pokemon.types = [];
+      for (var i = 0; i < responseJSON.types.length; i++)
+        pokemon.types.push(responseJSON.types[i].type.name);
     }).catch(function(e) {
       console.error(e);
     });

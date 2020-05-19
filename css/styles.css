@@ -67,7 +67,7 @@ button:focus {
   top: 25%;
   left: 0;
   width: 100%;
-  height: 50%;
+  height: auto;
   overflow: auto;
 }
 
@@ -85,4 +85,9 @@ button:focus {
 
 #modal-container.is-visible {
   display: block;
+}
+
+.images {
+  display: flex;
+  flex-direction: row;
 }
