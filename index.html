@@ -4,29 +4,71 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/pokemon.ico">
+    <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <title>Pokemons Knowledgebase</title>
   </head>
   <body>
-    <h1>Pokemons List</h1>
-    <div id="modal-container">
-      <div class="modal">
-        <div class="heading">
-          <button class="modal-close">Close</button>
-          <h1 class="modal-title">Modal Title</h1>
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top" >
+      <a class="navbar-brand" href="#">
+        <img src="img/pokemon-logo.ico" alt="Pokemon Custom Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav navbar-right">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color:blue" href="https://groverohit.github.io/portfolio-website/" target="_blank">
+              About Developer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" style="color:#737373" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <h1 class="display-1">Pokemons List</h1>
+      <div class="modal fade" id="pokemon-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" style="color: red; right: -350px">
+            <div class="modal-header">
+              <h1 class="modal-title" id="pokemon-modal-title">Modal Title</h1>
+            </div>
+
+            <div class = "modal-body">
+              <div class="images">
+                <img class="image1" src="img/pokemon.ico" alt="Pokemon Front Image">
+                <img class="image2" src="img/pokemon.ico" alt="Pokemon Back Image">
+              </div>
+              <p class="pokemon-height"></p>
+              <p class="pokemon-types"></p>
+              <p class="pokemon-abilities"></p>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <p class="modal-text">Modal Text</p>
-        <div class="images">
-          <div class="modal-image"></div>
-          <div class="modal-back-image"></div>
-        </div>
-        <p class="modal-types">Modal Types</p>
-        <p class="modal-abilities">Modal Abilities</p>
       </div>
     </div>
-    <ul class="pokemon-list"></ul>
+
+    <ul class="list-group"></ul>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
   </body>
 </html>

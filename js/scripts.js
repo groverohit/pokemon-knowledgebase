@@ -5,46 +5,23 @@
   //an array containing pokemon obects with name, height and types
   var pokemonList = [];
 
-  //the modal container
-  var modalContainer = $('#modal-container');
-
-  //function to show the modal
-  function showModal(pokemon){
-    var modal = $('.modal');
-    var closeButton = $('.modal-close');
-
-    //show pokemon name, height and image in modal
-    $('.modal-title').get(0).innerHTML = pokemon.name;
-    $('.modal-text').get(0).innerHTML = "Height = " + pokemon.height;
-    $('.modal-image').get(0).innerHTML = '<img src="' + pokemon.imageUrl + '">';
-    $('.modal-types').get(0).innerHTML = 'Types are ' + pokemon.types;
-    $('.modal-abilities').get(0).innerHTML = 'Abilities are ' + pokemon.abilities;
-    $('.modal-back-image').get(0).innerHTML = '<img src="' + pokemon.backImageUrl + '"/>';
-    $('#modal-container').addClass('is-visible');
-
-    //event listener to hide modal on button click
-    $('.modal-close').on('click', hideModal);
-  }
-
-  //function to hide the modal
-  function hideModal(){
-    var modalContainer = $('#modal-container');
-    $('#modal-container').removeClass('is-visible');
-  }
-
   //function to log selected pokemon details from the url
   function showDetails(pokemon){
     loadDetails(pokemon).then(function() {
-    showModal(pokemon);
+      $('.modal-title').html(pokemon.name);
+      $('.pokemon-height').html("Height = " + pokemon.height);
+      $('.pokemon-types').html("Types = " + pokemon.types.join(', '));
+      $('.pokemon-abilities').html("Abilities = " + pokemon.abilities.join(', '));
+      $('.image1').attr("src", pokemon.imageUrl);
+      $('.image2').attr("src", pokemon.backImageUrl);
     });
   }
 
   //function addListItem to add pokemons as list
   function addListItem(pokemon){
-    var list = $('.pokemon-list');
-    var listItem = $('li');
-    var button = $('<button class="button-class">'+pokemon.name+'</button>');
-    $('.pokemon-list').append($('li')).append(button);
+    var button = $('<button class="button-class list-group-item list-group-item-action btn btn-primary" data-toggle="modal" data-target="#pokemon-modal">'
+    +pokemon.name+'</button>');
+    $('.list-group').append(button);
 
     //event listener for button clicks
     button.on('click', function(event){
@@ -96,21 +73,6 @@
     });
   }
 
-  //addEventListener for "Escape" key on the modal
-  $(document).keyup(function( event ) {
-  if (event.keyCode === 27 && $('#modal-container').hasClass('is-visible')) {
-    hideModal();
-  }
-});
-
-  //function to close the modal if user clicks on overlay
-  $('#modal-container').on('click', (e) => {
-  var target = $(e.target);
-  if (target.is ('#modal-container')) {
-    hideModal();
-    }
-  });
-
   //make functions accessible from outside the object
   return{
     add: add,
@@ -118,9 +80,7 @@
     loadList: loadList,
     loadDetails: loadDetails,
     addListItem: addListItem,
-    showDetails: showDetails,
-    showModal: showModal,
-    hideModal: hideModal
+    showDetails: showDetails
   }
 })();
 
