@@ -1,5 +1,4 @@
 * {
-  margin: auto;
   padding: 5px;
   text-transform: capitalize;
 }
@@ -23,4 +22,15 @@ body {
   font-size: 26px;
   margin-bottom: 20px;
   text-transform: capitalize;
+}
+
+.modal-content {
+  background-color: white;
+  color: #e00;
+}
+
+.modal-header {
+  margin: auto;
+  background-color: white;
+  color: #e00;
 }
